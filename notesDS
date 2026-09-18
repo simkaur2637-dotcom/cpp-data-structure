@@ -1,0 +1,44 @@
+Linear vs Non-Linear Data Structures
+
+The major difference between linear and non-linear data structures is how their elements are organized. In a linear data structure, elements are arranged sequentially, such as in arrays, linked lists, stacks, and queues. In a non-linear data structure, elements form hierarchical or network relationships, such as trees and graphs.
+
+Linear structures are generally easier for beginners because they follow a straightforward sequence. Non-linear structures are more complex because one element can be connected to multiple other elements.
+
+26. Static vs Dynamic Data Structures
+
+A static data structure generally has a fixed size determined before or during allocation. A normal C++ array is a common example.
+
+int arr[10];
+
+The array has space for 10 integers.
+
+A dynamic data structure can change its size during program execution. A linked list and C++ vector are examples. Dynamic structures are useful when we do not know the exact amount of data that will be required beforehand.
+
+27. Importance of Data Structures in C++
+
+Data structures are the foundation of Data Structures and Algorithms (DSA). They help programmers organize information efficiently and build faster programs. A good understanding of data structures is important for software development, competitive programming, coding interviews, databases, operating systems, networking, and many other areas of computer science.
+
+For a C++ DSA learner, it is important not only to memorize definitions but also to understand how each data structure works internally, when to use it, its advantages and disadvantages, common operations, and time complexity.
+
+28. Quick Revision
+
+The most important data structures to learn in C++ can be remembered in this order:
+
+DATA STRUCTURES
+│
+├── Linear
+│   ├── Array
+│   ├── Vector
+│   ├── Linked List
+│   ├── Stack
+│   ├── Queue
+│   ├── Deque
+│   └── Priority Queue
+│
+└── Non-Linear
+    ├── Tree
+    │   ├── Binary Tree
+    │   ├── BST
+    │   └── Heap
+    │
+    └── Graph
