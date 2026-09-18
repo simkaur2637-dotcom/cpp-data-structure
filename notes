@@ -1,0 +1,415 @@
+1. Introduction to Data Structures
+
+A data structure is a way of organizing, storing, and managing data in a computer so that the data can be accessed and modified efficiently. When we write a program, we often need to store multiple values, such as marks of students, names, employee records, or a list of numbers. Simply storing data is not always enough; we also need to perform operations such as searching, inserting, deleting, sorting, and updating the data. Data structures provide suitable ways to perform these operations efficiently. In C++, data structures are especially important because C++ provides both built-in data structures and powerful Standard Template Library (STL) containers.
+
+For example, if we have 100 student marks, storing them in 100 separate variables would be difficult to manage. Instead, we can use an array to store them together. Similarly, if we frequently need to insert and delete elements, a linked list may be more suitable. Therefore, choosing the correct data structure depends on the type of data and the operations that need to be performed.
+
+2. Classification of Data Structures
+
+Data structures can mainly be classified into primitive and non-primitive data structures. Primitive data structures are the basic data types provided by a programming language, such as int, char, float, double, and bool. Non-primitive data structures are created using primitive data types and are generally divided into linear and non-linear data structures.
+
+In a linear data structure, elements are arranged sequentially, meaning each element generally has a previous and a next element, except for the first and last elements. Examples include arrays, linked lists, stacks, and queues. In a non-linear data structure, elements are not arranged in a simple sequence. Instead, they form hierarchical or network-like relationships. Examples include trees and graphs.
+
+3. Array
+
+An array is a linear data structure that stores multiple elements of the same data type in contiguous memory locations. Each element is accessed using an index. In C++, array indexing starts from 0, so if an array contains five elements, its indexes are 0 to 4. Arrays are useful when the number of elements is known or relatively fixed and when we need fast access to elements.
+
+For example:
+
+int arr[5] = {10, 20, 30, 40, 50};
+
+Here, arr[0] contains 10, arr[1] contains 20, and so on. One of the biggest advantages of an array is random access, because any element can be accessed directly using its index. Accessing arr[3] does not require checking the elements before it.
+
+The major operations performed on arrays are traversal, insertion, deletion, searching, and updating. Traversal means visiting every element of the array. Searching means finding whether a particular value exists. Insertion means adding a new element, while deletion means removing an element. In a normal array, insertion and deletion can be expensive because elements may need to be shifted.
+
+The time complexity of accessing an array element using its index is O(1). Searching in an unsorted array using linear search takes O(n) time. Insertion or deletion at the beginning can take O(n) because elements may need to be shifted.
+
+4. Vector
+
+A vector in C++ is a dynamic array provided by the STL. Unlike a normal array, a vector can automatically increase or decrease its size as elements are added or removed. Vectors are widely used in competitive programming and DSA because they provide the convenience of arrays while allowing dynamic sizing.
+
+To use a vector, we generally include:
+
+#include <vector>
+using namespace std;
+
+Example:
+
+vector<int> v = {10, 20, 30};
+
+We can add an element using push_back():
+
+v.push_back(40);
+
+We can remove the last element using:
+
+v.pop_back();
+
+We can access elements using indexes:
+
+cout << v[1];
+
+Vectors provide O(1) average-time access using an index. Adding an element at the end using push_back() is generally O(1) amortized time, although occasionally the vector may need to allocate a larger memory block and copy its elements. Inserting or deleting elements from the middle can take O(n) because other elements may have to be shifted.
+
+5. Linked List
+
+A linked list is a linear data structure in which elements are stored in separate memory locations and connected using pointers. Each element is called a node. A node usually contains two parts: data and a pointer to the next node.
+
+A basic node in C++ can be created as:
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+Unlike an array, linked-list elements do not need to be stored next to each other in memory. The pointer connects one node to the next node. The first node is called the head.
+
+For example:
+
+10 → 20 → 30 → NULL
+
+Here, 10 is stored in the first node, which points to the node containing 20. The node containing 30 points to NULL, indicating the end of the list.
+
+Linked lists are useful when frequent insertion and deletion operations are required. If we already have a pointer to the correct position, insertion or deletion can be performed efficiently without shifting all the other elements. However, linked lists do not provide direct random access like arrays. To access the fifth element, we generally have to start from the head and move through the previous nodes.
+
+The main types of linked lists are singly linked list, doubly linked list, and circular linked list. A singly linked list contains a pointer to the next node. A doubly linked list contains pointers to both the previous and next nodes. A circular linked list connects the last node back to the first node.
+
+6. Stack
+
+A stack is a linear data structure that follows the principle LIFO, which means Last In, First Out. The element inserted last is removed first. A common real-life example is a stack of plates. If plates are placed one above another, the plate placed last on top is normally removed first.
+
+The two basic stack operations are push and pop. push adds an element to the top of the stack, while pop removes the top element. Another important operation is top, which allows us to see the top element without removing it.
+
+In C++, the STL provides a stack:
+
+#include <stack>
+
+stack<int> s;
+
+s.push(10);
+s.push(20);
+s.push(30);
+
+The stack now logically looks like:
+
+30 ← Top
+20
+10
+
+If we perform:
+
+s.pop();
+
+30 is removed.
+
+Stacks are commonly used in function calls, recursion, undo operations, expression evaluation, parentheses checking, and depth-first search. The basic stack operations such as push, pop, and top generally take O(1) time.
+
+7. Queue
+
+A queue is a linear data structure that follows the principle FIFO, which means First In, First Out. The element inserted first is removed first. A real-life example is a queue of people waiting at a ticket counter. The person who comes first is generally served first.
+
+The two major operations are enqueue and dequeue. Enqueue means adding an element to the rear of the queue, while dequeue means removing an element from the front.
+
+In C++, we can use:
+
+#include <queue>
+
+queue<int> q;
+
+q.push(10);
+q.push(20);
+q.push(30);
+
+The queue becomes:
+
+Front → 10 20 30 ← Rear
+
+If we perform:
+
+q.pop();
+
+10 is removed.
+
+A queue can be used in CPU scheduling, printer scheduling, customer-service systems, breadth-first search, and buffering. Basic insertion and deletion operations in an STL queue generally take O(1) time.
+
+8. Circular Queue
+
+A circular queue is a modified version of a normal queue in which the last position is connected back to the first position. It helps solve the problem of unused spaces that can occur in an array-based simple queue.
+
+Suppose a queue has five positions and some elements are removed from the beginning. In a simple array queue, those empty positions may not be reused easily. In a circular queue, the rear can move back to the beginning when it reaches the end.
+
+The circular movement is commonly implemented using:
+
+rear = (rear + 1) % size;
+
+The modulo operator % allows the index to wrap around. Circular queues are useful in CPU scheduling, memory buffers, and streaming systems.
+
+9. Priority Queue
+
+A priority queue is a special type of queue in which elements are removed according to their priority rather than simply according to their insertion order. In the C++ STL, priority_queue is generally implemented using a heap.
+
+By default, C++ provides a max-heap, meaning the largest element has the highest priority.
+
+priority_queue<int> pq;
+
+pq.push(10);
+pq.push(50);
+pq.push(20);
+
+The top element will be:
+
+50
+
+A minimum priority queue can be created using:
+
+priority_queue<int, vector<int>, greater<int>> pq;
+
+In a priority queue, insertion and deletion of the highest-priority element generally take O(log n) time, while accessing the highest-priority element takes O(1).
+
+10. Deque
+
+A deque, or double-ended queue, is a data structure that allows insertion and deletion from both the front and the rear. It combines some properties of stacks and queues.
+
+In C++:
+
+#include <deque>
+
+deque<int> d;
+
+d.push_front(10);
+d.push_back(20);
+d.pop_front();
+d.pop_back();
+
+A deque is useful when we need efficient operations at both ends. In C++, these operations are generally O(1).
+
+11. Tree
+
+A tree is a non-linear hierarchical data structure. It consists of nodes connected by edges. The topmost node is called the root. A node can have child nodes, and each child can have its own children.
+
+For example:
+
+        10
+       /  \
+      5    20
+     / \
+    2   7
+
+Here, 10 is the root. 5 and 20 are children of 10. The nodes 2 and 7 are children of 5.
+
+Important tree terms include root, parent, child, leaf, edge, height, depth, and subtree. A node with no children is called a leaf node.
+
+Trees are useful for representing hierarchical information such as file systems, organization structures, HTML/XML documents, and database indexes.
+
+12. Binary Tree
+
+A binary tree is a tree in which each node can have at most two children. These children are generally called the left child and right child.
+
+A basic binary tree node in C++ can be represented as:
+
+struct Node {
+    int data;
+    Node* left;
+    Node* right;
+};
+
+Binary trees are important because they form the foundation of several other data structures, including binary search trees and heaps.
+
+13. Binary Search Tree
+
+A Binary Search Tree (BST) is a binary tree that follows a particular ordering rule. For every node, values smaller than the node are generally placed in the left subtree, while values greater than the node are placed in the right subtree.
+
+For example:
+
+        50
+       /  \
+     30    70
+    / \    / \
+   20 40  60 80
+
+Searching becomes efficient when the tree is balanced because every comparison can eliminate a large portion of the remaining tree. In a balanced BST, searching, insertion, and deletion can take O(log n) time. However, in the worst case, if the tree becomes completely skewed, these operations can become O(n).
+
+14. Heap
+
+A heap is a specialized tree-based data structure that satisfies the heap property. The two main types are max-heap and min-heap.
+
+In a max-heap, the parent is greater than or equal to its children. Therefore, the largest element is present at the root.
+
+In a min-heap, the parent is smaller than or equal to its children. Therefore, the smallest element is present at the root.
+
+Heaps are commonly used to implement priority queues and are also important in heap sort.
+
+15. Graph
+
+A graph is a non-linear data structure consisting of vertices (nodes) and edges that connect those vertices. Unlike trees, graphs do not necessarily have a root and can contain cycles.
+
+For example:
+
+A ----- B
+|       |
+|       |
+C ----- D
+
+Here, A, B, C, and D are vertices, while the connecting lines are edges.
+
+Graphs can be directed or undirected. In a directed graph, edges have a specific direction. In an undirected graph, connections work in both directions. Graphs can also be weighted, where each edge has a value such as distance or cost.
+
+Graphs are used in social networks, maps, computer networks, recommendation systems, and route-finding applications.
+
+16. Graph Representation
+
+Graphs can commonly be represented using an adjacency matrix or an adjacency list.
+
+An adjacency matrix uses a two-dimensional array to represent connections between vertices. If an edge exists between two vertices, the corresponding position in the matrix contains a value representing that connection.
+
+An adjacency list stores the neighbors of each vertex. In C++, it can be represented using:
+
+vector<vector<int>> graph;
+
+or:
+
+vector<int> graph[5];
+
+An adjacency list is generally more memory-efficient for sparse graphs, where the number of edges is much smaller than the maximum possible number of edges.
+
+17. Hash Table / Hashing
+
+Hashing is a technique used to store and retrieve data quickly using a key. A hash function converts a key into an index or hash value that determines where the data should be stored.
+
+In C++, unordered_map is a common hash-table-based container:
+
+unordered_map<string, int> marks;
+
+marks["Simran"] = 90;
+marks["Rahul"] = 85;
+
+Here, names are keys and marks are values.
+
+Hash tables provide average O(1) time for insertion, searching, and deletion, although the worst-case complexity can be O(n) because of collisions.
+
+18. Set
+
+A set is a container that stores unique elements. If we try to insert the same value multiple times into a normal C++ set, only one copy is stored.
+
+set<int> s;
+
+s.insert(10);
+s.insert(20);
+s.insert(10);
+
+The set contains:
+
+10 20
+
+The standard set maintains elements in sorted order and is commonly implemented using a balanced tree. Searching, insertion, and deletion generally take O(log n).
+
+C++ also provides unordered_set, which uses hashing and provides average O(1) insertion, search, and deletion.
+
+19. Map
+
+A map stores data in the form of key-value pairs. Every key is unique in a normal map.
+
+Example:
+
+map<string, int> marks;
+
+marks["Simran"] = 90;
+marks["Aman"] = 85;
+
+Here, "Simran" and "Aman" are keys, while 90 and 85 are their corresponding values.
+
+A C++ map maintains keys in sorted order and generally provides O(log n) insertion, deletion, and searching. unordered_map provides average O(1) operations but does not maintain keys in sorted order.
+
+20. String as a Data Structure
+
+A string is a sequence of characters. C++ provides the string class through the STL, making it easier to store and manipulate text.
+
+Example:
+
+string name = "Simran";
+
+Characters can be accessed using indexes:
+
+cout << name[0];
+
+which gives:
+
+S
+
+Common string operations include finding length, concatenation, comparison, searching for substrings, and modifying characters. Strings are frequently used in programming problems involving palindromes, anagrams, frequency counting, pattern matching, and text processing.
+
+21. Recursion and Data Structures
+
+Recursion is a programming technique in which a function calls itself. Although recursion itself is not technically a data structure, it is closely connected with data structures because recursive calls use the call stack.
+
+For example, when traversing a tree, recursion is commonly used:
+
+void inorder(Node* root) {
+    if (root == NULL)
+        return;
+
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
+}
+
+The function first processes the left subtree, then the current node, and then the right subtree. Recursion is particularly useful for trees, graphs, divide-and-conquer algorithms, and backtracking.
+
+22. Data Structure Operations
+
+Most data structures support some common operations. Traversal means visiting each element of a data structure. Insertion means adding a new element. Deletion means removing an element. Searching means finding a particular element. Updating means changing an existing element. Sorting means arranging elements according to some order, such as ascending or descending order.
+
+The efficiency of these operations depends on the data structure being used. For example, accessing an array element by index is O(1), while finding an element in an unsorted array can take O(n). Choosing an appropriate data structure can therefore significantly improve program performance.
+
+23. Time and Space Complexity
+
+When studying data structures, we also study time complexity and space complexity. Time complexity describes how the running time of an algorithm grows as the input size increases. Space complexity describes how much additional memory an algorithm requires.
+
+Common complexities include:
+
+O(1)       Constant
+O(log n)   Logarithmic
+O(n)       Linear
+O(n log n) Linearithmic
+O(n²)      Quadratic
+O(2ⁿ)      Exponential
+O(n!)      Factorial
+
+For example, accessing an element of an array using an index takes O(1), while traversing all n elements takes O(n).
+
+Understanding complexity is extremely important in DSA because two programs may produce the same answer but have very different performance.
+
+24. STL in C++
+
+The Standard Template Library (STL) is one of the most important parts of C++ for DSA. It provides ready-made data structures and algorithms that save programming time and reduce the possibility of implementation errors.
+
+Important STL containers include:
+
+vector
+array
+list
+forward_list
+stack
+queue
+deque
+priority_queue
+set
+unordered_set
+map
+unordered_map
+
+STL also provides useful algorithms such as:
+
+sort()
+reverse()
+find()
+binary_search()
+max()
+min()
+swap()
+
+For example:
+
+vector<int> v = {5, 2, 8, 1};
+
+sort(v.begin(), v.end());
